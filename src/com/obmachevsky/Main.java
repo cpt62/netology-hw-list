@@ -43,7 +43,14 @@ public class Main {
                 case 2 -> tasks.showAllTasks();
                 case 3 -> {
                     System.out.print("Введите номер для удаления: ");
-                    int id = Integer.parseInt(scanner.nextLine());
+                    int id = 0;
+                    try {
+                        id = Integer.parseInt(scanner.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Введите корректное значение номера задачи!");
+                        System.out.println();
+                        continue;
+                    }
                     System.out.println();
                     if (tasks.removeByID(id)) {
                         System.out.println("Удалено!");
