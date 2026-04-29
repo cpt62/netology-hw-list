@@ -11,8 +11,12 @@ public class Task {
         taskList = new ArrayList<>();
     }
 
-    public void add(String task) {
-        taskList.add(task);
+    public boolean add(String task) {
+        if (!taskList.contains(task)) {
+            taskList.add(task);
+            return true;
+        }
+        return false;
     }
 
     public void showAllTasks() {
@@ -29,12 +33,11 @@ public class Task {
     }
 
     public boolean removeByID(int num) {
-        num = num - 1;
         if (num > taskList.size()) {
-
             return false;
+        } else {
+            taskList.remove(num - 1);
         }
-        taskList.remove(num);
         return true;
     }
 
@@ -42,10 +45,8 @@ public class Task {
         if (taskList.contains(task)) {
             taskList.remove(task);
             return true;
-        } else {
-            System.out.println("Такого дела не существует");
-            return false;
         }
+        return false;
     }
 
     public boolean removeByPartValue(String part) {
@@ -56,7 +57,6 @@ public class Task {
             String checkString = iterator.next().toLowerCase();
             if (checkString.contains(part)) {
                 iterator.remove();
-                System.out.println("Удалено из списка дел " + checkString);
                 wasModified = true;
             }
         }

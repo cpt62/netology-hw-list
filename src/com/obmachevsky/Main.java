@@ -36,9 +36,12 @@ public class Main {
                 case 1 -> {
                     System.out.print("Введите название задачи: ");
                     String newTask = scanner.nextLine();
-                    tasks.add(newTask);
-                    System.out.println("Добавлено!");
-                    tasks.showAllTasks();
+                    if (tasks.add(newTask)) {
+                        System.out.println("Добавлено!");
+                        tasks.showAllTasks();
+                    } else {
+                        System.out.println("Данная задача уже присутствует в списке!");
+                    }
                 }
                 case 2 -> tasks.showAllTasks();
                 case 3 -> {
@@ -75,6 +78,7 @@ public class Main {
                     String task = scanner.nextLine();
                     if (tasks.removeByPartValue(task)) {
                         tasks.showAllTasks();
+                        System.out.println("Список дел подвергся изменению. Удалены позиции согласно заданного ключевого слова!");
                     } else {
                         System.out.println("Список дел не подвергся изменению. Ключевое слово отсутствует в списке дел!");
                     }
